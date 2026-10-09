@@ -66,7 +66,9 @@ export function polityForState(state = {}) {
   const stamp = calendarStamp(state);
   let cityName = stamp >= 1924 + 287 / 366 && stamp < 1991 + 265 / 365 ? 'Свердловск' : 'Екатеринбург';
   let label, detail = '', localControl = '';
-  if (stamp < 1917 + 73 / 365) {
+  if (stamp < 1721) {
+    label = 'Русское царство';
+  } else if (stamp < 1917 + 73 / 365) {
     label = 'Российская империя';
   } else if (stamp < 1917 + 256 / 365) {
     label = 'Россия'; detail = 'Временное правительство';
