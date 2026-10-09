@@ -1,0 +1,97 @@
+// Geographic labels and historical name dates.
+export const SQUARE_LABELS=[
+  {
+    "key": "1905",
+    "title": "Площадь1905года",
+    "osmType": "way",
+    "osmId": 47807305,
+    "lon": 60.5972192,
+    "lat": 56.8378931,
+    "sourceUrl": "https://www.openstreetmap.org/way/47807305",
+    "confidence": "OSMplace=square",
+    "label": "пл. 1905 года",
+    "start": 1919,
+    "end": 10000,
+    "nameDateSource": "https://xn--80aaebf3an9auge0i.xn--p1ai/squares_of_ekaterinburg"
+  },
+  {
+    "key": "truda",
+    "title": "ПлощадьТруда",
+    "osmType": "way",
+    "osmId": 79381794,
+    "lon": 60.6065885,
+    "lat": 56.8382362,
+    "sourceUrl": "https://www.openstreetmap.org/way/79381794",
+    "confidence": "OSMplace=square",
+    "label": "пл. Труда",
+    "start": 1991,
+    "end": 10000
+  },
+  {
+    "key": "oborony",
+    "title": "ПлощадьОбороны",
+    "osmType": "way",
+    "osmId": 38753486,
+    "lon": 60.6286729,
+    "lat": 56.8231672,
+    "sourceUrl": "https://www.openstreetmap.org/way/38753486",
+    "confidence": "OSMplace=square",
+    "label": "пл. Обороны",
+    "start": 1991,
+    "end": 10000
+  },
+  {
+    "key": "station",
+    "title": "Привокзальнаяплощадь",
+    "osmType": "node",
+    "osmId": 6063019050,
+    "lon": 60.6061575,
+    "lat": 56.857748,
+    "sourceUrl": "https://www.openstreetmap.org/node/6063019050",
+    "confidence": "OSMplace=square",
+    "label": "Привокзальная площадь",
+    "start": 1914,
+    "end": 10000
+  },
+  {
+    "key": "october",
+    "title": "Октябрьская площадь",
+    "osmType": "way",
+    "osmId": 39595019,
+    "lon": 60.5949413,
+    "lat": 56.8431823,
+    "sourceUrl": "https://www.openstreetmap.org/way/39595019",
+    "confidence": "OSMpedestrianarea",
+    "label": "Октябрьская площадь",
+    "start": 1991,
+    "end": 10000
+  },
+  {
+    "key": "communards",
+    "title": "ПлощадьКоммунаров",
+    "osmType": "way",
+    "osmId": 434343800,
+    "lon": 60.5785676,
+    "lat": 56.8357874,
+    "sourceUrl": "https://www.openstreetmap.org/way/434343800",
+    "confidence": "Memorialanchor,NOTsquareboundary",
+    "notes": "Other returned name matches were bus/tramstops200m east. Anchor label by memorial intentionally; broad square extent unknown.",
+    "label": "пл. Коммунаров",
+    "start": 1959,
+    "end": 10000
+  },
+  {
+    "key": "paris",
+    "title": "ПлощадьПарижскойКоммуны",
+    "osmType": null,
+    "osmId": null,
+    "lon": 60.618,
+    "lat": 56.8385,
+    "confidence": "Approximateeditorialanchorbyopera,NOTverifiedOSMpoint",
+    "sourceUrl": "https://xn--80aaebf3an9auge0i.xn--p1ai/squares_of_ekaterinburg",
+    "notes": "Institutional archival exhibition confirms Drovyanaya→ParisCommune1919. PreciseOSMnamedplaceabsent fromboundedquery; adjust tooperaforecourt.",
+    "label": "пл. Парижской Коммуны",
+    "start": 1919,
+    "end": 10000
+  }
+];

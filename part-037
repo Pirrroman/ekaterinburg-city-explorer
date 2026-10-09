@@ -1,0 +1,681 @@
+{
+  "title": "Население Екатеринбурга — данные и модель для исторического ролика",
+  "version": 2,
+  "checked": "2026-10-08",
+  "territoryPolicy": "Счётчик показывает город, не население муниципального округа и не агломерации. Исторические границы не нормализованы к современным.",
+  "displayPolicy": {
+    "verifiedAnchor": "Опубликованное целое значение; источники и статус остаются в данных.",
+    "unverifiedAnchor": "Исторические оценки остаются опорами; в кадре выводится только число без методической подписи.",
+    "intermediate": "Дробный год, непрерывная кусочная геометрическая интерполяция, округление только при отрисовке до целого человека. Это визуальная модель, не ежегодная статистика.",
+    "year1723": "До основания города счётчик скрыт. В строительный сезон 1723–1724 плавный условный переход 0→4000 (опора1724), без заявления о точном переписном числе строителей.",
+    "year2026": "Удерживается последний подтверждённый показатель1548187 на1января2025; методическое пояснение только здесь, без подписи в кадре."
+  },
+  "segments": [
+    {
+      "start": 1723,
+      "end": 1913,
+      "label": "ранний исторический ряд",
+      "method": "settlement_linear_then_piecewise_log"
+    },
+    {
+      "start": 1913,
+      "end": 1926,
+      "label": "Первая мировая и Гражданская война",
+      "method": "piecewise_log",
+      "note": "Отдельные опоры 1913, 1917, 1920, 1923, 1926; не одна кривая через всю эпоху."
+    },
+    {
+      "start": 1926,
+      "end": 1940,
+      "label": "индустриализация и изменения городской территории",
+      "method": "piecewise_log",
+      "note": "Спорные вторичные значения 1933 и 1937 исключены: методика/границы не подтверждены."
+    },
+    {
+      "start": 1940,
+      "end": 1945,
+      "label": "война и эвакуация",
+      "method": "annual_anchor_segments",
+      "note": "Ежегодные исторические оценки показывают рост и отъезд эвакуированных, без общей монотонной кривой."
+    },
+    {
+      "start": 1945,
+      "end": 1989,
+      "label": "послевоенный рост",
+      "method": "piecewise_log",
+      "note": "1967: городской ряд ≈961 тыс.; чествование миллионного жителя относится к расширенному учёту."
+    },
+    {
+      "start": 1989,
+      "end": 2002,
+      "label": "переход между переписями",
+      "method": "piecewise_log",
+      "note": "Между переписями непрерывная интерполяция с сохранением снижения; неопределённость документирована здесь."
+    },
+    {
+      "start": 2002,
+      "end": 2025,
+      "label": "современные оценки и переписи",
+      "method": "piecewise_log",
+      "note": "Скачок к переписи 2021 не интерпретировать как мгновенный естественный прирост; это новая опорная оценка."
+    },
+    {
+      "start": 2025,
+      "end": 2026,
+      "label": "последнее подтверждённое значение",
+      "method": "hold",
+      "note": "В 2026 источник всё ещё на 1 января 2025."
+    }
+  ],
+  "excluded": [
+    {
+      "years": [
+        1933,
+        1937,
+        1990,
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "reason": "Не использовать неподтверждённые скачки вторичного ряда как точную ежегодную статистику."
+    },
+    {
+      "value": 1589134,
+      "year": 2025,
+      "reason": "Предварительная численность всего муниципального образования, включает сельское население; другой территориальный показатель."
+    },
+    {
+      "value": 1545357,
+      "year": 2025,
+      "reason": "Предварительная городская оценка в ранней публикации; для опоры выбрано позднее значение официальной БД 1548187."
+    }
+  ],
+  "anchors": [
+    {
+      "year": 1724,
+      "value": 4000,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1781,
+      "value": 7969,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1786,
+      "value": 9276,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1807,
+      "value": 10023,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1820,
+      "value": 13026,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1836,
+      "value": 14973,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1851,
+      "value": 15471,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1856,
+      "value": 16900,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1861,
+      "value": 19832,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1877,
+      "value": 30274,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1887,
+      "value": 37399,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1897,
+      "value": 43239,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая перепись; тип и границы сверять по первичной таблице",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1913,
+      "value": 69210,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1917,
+      "value": 71590,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1920,
+      "value": 91400,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1923,
+      "value": 97400,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1926,
+      "value": 134831,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая перепись; тип и границы сверять по первичной таблице",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1931,
+      "value": 223335,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1939,
+      "value": 425533,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая перепись; тип и границы сверять по первичной таблице",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1940,
+      "value": 436300,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1941,
+      "value": 450000,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1942,
+      "value": 510000,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1943,
+      "value": 548800,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1944,
+      "value": 543700,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1945,
+      "value": 487400,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1956,
+      "value": 707000,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1959,
+      "value": 778602,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая перепись; тип и границы сверять по первичной таблице",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1962,
+      "value": 853000,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1967,
+      "value": 961000,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1970,
+      "value": 1025045,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая перепись; тип и границы сверять по первичной таблице",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1973,
+      "value": 1099000,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1979,
+      "value": 1211172,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая перепись; тип и границы сверять по первичной таблице",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1982,
+      "value": 1252000,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1985,
+      "value": 1308000,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 1989,
+      "value": 1364621,
+      "date": "1989-01-12",
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая перепись; тип и границы сверять по первичной таблице",
+      "confidence": "official_census_reprint",
+      "verified": true,
+      "sourceId": "census-1989",
+      "source": "https://www.demoscope.ru/weekly/ssp/rus89_reg2.php"
+    },
+    {
+      "year": 2002,
+      "value": 1293537,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая перепись; тип и границы сверять по первичной таблице",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 2009,
+      "value": 1332264,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 2010,
+      "value": 1349772,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая перепись; тип и границы сверять по первичной таблице",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 2011,
+      "value": 1350100,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 2012,
+      "value": 1377738,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 2013,
+      "value": 1396074,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 2014,
+      "value": 1412346,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 2015,
+      "value": 1428042,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 2016,
+      "value": 1444439,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 2017,
+      "value": 1455904,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 2018,
+      "value": 1468833,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 2019,
+      "value": 1483119,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 2020,
+      "value": 1493749,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 2021,
+      "value": 1544376,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая перепись; тип и границы сверять по первичной таблице",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 2023,
+      "value": 1539371,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 2024,
+      "value": 1536183,
+      "date": null,
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "историческая опубликованная оценка; тип и дата не верифицированы",
+      "confidence": "secondary_unverified",
+      "verified": false,
+      "sourceId": "wiki-history",
+      "source": "https://ru.wikipedia.org/wiki/Екатеринбург"
+    },
+    {
+      "year": 2025,
+      "value": 1548187,
+      "date": "2025-01-01",
+      "territory": "город Екатеринбург / Свердловск в границах соответствующего года",
+      "populationType": "городское население — официальный ежегодный показатель",
+      "confidence": "official_database",
+      "verified": true,
+      "sourceId": "rosstat-2025",
+      "source": "https://rosstat.gov.ru/scripts/db_inet2/passport/table.aspx?opt=6570100020222025"
+    }
+  ]
+}

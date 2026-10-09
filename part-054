@@ -1,0 +1,13 @@
+{
+  "name": "ekaterinburg-city-explorer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Interactive historical 3D city of Ekaterinburg",
+  "scripts": {
+    "start": "node server.cjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

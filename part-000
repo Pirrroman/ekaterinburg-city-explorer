@@ -1,0 +1,12 @@
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*
+work/
+media/
+*.mp4
+*.mp3
+*.wav
+*.h264

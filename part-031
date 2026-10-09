@@ -1,0 +1,90 @@
+const ANCHORS = [
+  [1724,4000],[1781,7969],[1786,9276],[1807,10023],[1820,13026],
+  [1836,14973],[1851,15471],[1856,16900],[1861,19832],[1877,30274],
+  [1887,37399],[1897,43239],[1913,69210],[1917,71590],[1920,91400],
+  [1923,97400],[1926,134831],[1931,223335],[1939,425533],[1940,436300],
+  [1941,450000],[1942,510000],[1943,548800],[1944,543700],[1945,487400],
+  [1956,707000],[1959,778602],[1962,853000],[1967,961000],[1970,1025045],
+  [1973,1099000],[1979,1211172],[1982,1252000],[1985,1308000],[1989,1364621],
+  [2002,1293537],[2009,1332264],[2010,1349772],[2011,1350100],
+  [2012,1377738],[2013,1396074],[2014,1412346],[2015,1428042],
+  [2016,1444439],[2017,1455904],[2018,1468833],[2019,1483119],
+  [2020,1493749],[2021,1544376],[2023,1539371],[2024,1536183],[2025,1548187]
+];
+const CONFIRMED = new Set([1989, 2025]);
+const FONT = '"Segoe UI", "Arial", sans-serif';
+const GOLD = '#efc578';
+const WHITE = '#fffaf0';
+const SOFT = '#d8e0d7';
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const smooth = x => { x = clamp(x); return x * x * (3 - 2 * x); };
+const number = value => Math.round(value).toLocaleString('ru-RU').replace(/\u00a0/g, ' ');
+
+export function populationForYear(inputYear) {
+  const year = Number.isFinite(Number(inputYear)) ? Number(inputYear) : 1723;
+  const first = ANCHORS[0], last = ANCHORS[ANCHORS.length - 1];
+  let value, estimated = true, basisYear = year, note = 'расчётная оценка';
+  let left = first, right = first;
+  if (year < first[0]) {
+    // This is the visual settlement ramp, not an invented census for 1723.
+    left = [1723, 0]; right = first;
+    value = first[1] * clamp(year - 1723); basisYear = first[0]; note = 'становление поселения; опорная оценка 1724';
+  } else if (year > last[0]) {
+    value = last[1]; left = right = last; basisYear = last[0]; note = 'по данным 2025';
+  } else {
+    const exact = ANCHORS.find(a => a[0] === year);
+    if (exact) {
+      value = exact[1]; left = right = exact; estimated = !CONFIRMED.has(year);
+      note = estimated ? 'историческая оценка' : year === 2025 ? 'Росстат · 1 января 2025' : 'перепись населения';
+    } else {
+      for (let i = 1; i < ANCHORS.length; i++) {
+        if (ANCHORS[i][0] > year) { left = ANCHORS[i - 1]; right = ANCHORS[i]; break; }
+      }
+      // Each pair is an independent interval: annual wartime anchors preserve
+      // evacuation growth and departure instead of smoothing through the war.
+      const t = (year - left[0]) / (right[0] - left[0]);
+      value = left[1] * Math.pow(right[1] / left[1], t);
+    }
+  }
+  if (year === 1967) note = 'городской статистический ряд';
+  if (year === 2021) note = 'перепись · вторичный источник';
+  return {
+    year, value, estimated, basisYear, note,
+    label: number(value),
+    interval: [left[0], right[0]],
+    territory: 'город в границах соответствующего года'
+  };
+}
+
+// One calendar drives naming, authority, population and physical lifecycles.
+// Dated milestones are stored in the timeline; seeking never rewrites time.
+function calendarStamp(state) {
+  return Number.isFinite(state.calendarYear) ? state.calendarYear : Number(state.year || 1723);
+}
+
+export function polityForState(state = {}) {
+  const stamp = calendarStamp(state);
+  let cityName = stamp >= 1924 + 287 / 366 && stamp < 1991 + 265 / 365 ? 'Свердловск' : 'Екатеринбург';
+  let label, detail = '', localControl = '';
+  if (stamp < 1917 + 73 / 365) {
+    label = 'Российская империя';
+  } else if (stamp < 1917 + 256 / 365) {
+    label = 'Россия'; detail = 'Временное правительство';
+  } else if (stamp < 1917 + 310 / 365) {
+    label = 'Российская республика'; detail = '1917';
+  } else if (stamp < 1922 + 363 / 365) {
+    label = 'Россия';
+    detail = stamp < 1918 ? 'Советская Россия' : 'РСФСР';
+    if (stamp >= 1918 + 205 / 365 && stamp < 1919 + 194 / 365) {
+      detail = ''; localControl = 'Белые войска · 1918–1919';
+    } else if (stamp >= 1919 + 194 / 365 && stamp < 1922) {
+      localControl = 'Советская власть';
+    }
+  } else if (stamp < 1991 + 358 / 365) {
+    label = 'Советский Союз';
+  } else {
+    label = 'Российская Федерация';
+  }
+  return { label, detail, cityName, localControl, calendarStamp: stamp };
+}
+
