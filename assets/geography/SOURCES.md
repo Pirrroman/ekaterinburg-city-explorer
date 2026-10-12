@@ -10,3 +10,5 @@ Historical ordinary houses, street firstappearance and urban extents are illustr
 
 
 Rendering correction notes: 34 isolated DEM samples with implausible local discontinuities were median corrected. Named plots are locally graded, and the airport field uses its OSM aerodrome elevation 233m MSL. Terrain LOD interiors are disjoint. Date-aware water masks use approximately11m regional and1.7m central sampling to prevent coarse DEM facets occluding the measured water outline. River arrival and ordinary historical parcels are illustrative staging.
+
+Central multipolygon/building-part repair, snapshot 2026-10-12T17:46:51Z: see [COMPLEX-BUILDINGS-SOURCES.md](COMPLEX-BUILDINGS-SOURCES.md). The original 2026-10-08 base remains in use outside that additive repair.

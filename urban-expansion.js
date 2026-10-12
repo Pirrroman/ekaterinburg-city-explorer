@@ -1,6 +1,7 @@
 import * as THREE from './vendor/three.module.js';
 import { URBAN } from './assets/geography/urban-data.js';
 import { GEO, project, heightAt, pointInside } from './geo.js';
+import { METRO_SHOT, metroMotionAt } from './metro-motion.js';
 
 const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
 const mix=(a,b,t)=>a+(b-a)*t;
@@ -161,6 +162,13 @@ float across=abs(vMarkUv.x-.5)*2.0;float aa=max(fwidth(across),.001);float cover
   const northD=(stations[0].d+stations[2].d)/2,southD=(stations[6].d+stations[8].d)/2;
   const target=d=>{const p=sample(path,d);return[p.x,heightAt(p.x,p.z)+48,p.z];};
   targets.metroNorth=target(northD);targets.metroSouth=target(southD);targets.metroTrainNorth=target(northD);targets.metroTrainSouth=target(southD);
+  // Camera and rendered train share one pure pose, including at previous-shot
+  // endpoints. Updating a different scene cannot mutate a metro camera anchor.
+  targets.metroPoseAt=(key,progress,duration=10)=>{
+    const north=key==='metroNorth',from=north?stations[0].d:stations[8].d,to=north?stations[2].d:stations[6].d,direction=north?1:-1;
+    const motion=metroMotionAt(progress,duration,Math.abs(to-from)),center=sample(path,from+direction*motion.center);
+    return {...motion,from,to,direction,x:center.x,y:heightAt(center.x,center.z)+49,z:center.z};
+  };
   const bounds={metroNorth:{length:stations[2].d-stations[0].d,width:600},metroSouth:{length:stations[8].d-stations[6].d,width:1900}};
   let lastMetro=null;
   function update(s){
@@ -174,10 +182,16 @@ float across=abs(vMarkUv.x-.5)*2.0;float aa=max(fwidth(across),.001);float cover
     if(north&&override===0)metroGroup.visible=false;
     for(const seg of segments)seg.group.visible=seg.d<=end&&seg.d>=stations[0].d;
     for(const st of stations){st.group.visible=st.label.visible=st.year<=s.calendarYear&&st.d<=end&&(north?st.d<=stations[2].d:st.d>=stations[6].d);}
-    const usable=Math.max(1,Math.min(to,end)-from-110),phase=(s.time*11)%(usable*2),d=from+55+(phase<=usable?phase:2*usable-phase),dir=phase<=usable?1:-1;
-    for(let i=0;i<cars.length;i++){cars[i].visible=end-from>110;const p=sample(path,d-i*19.3*dir);cars[i].position.set(p.x,heightAt(p.x,p.z)+46,p.z);cars[i].rotation.y=p.angle;}
-    const p=sample(path,d);title.position.set(p.x,heightAt(p.x,p.z)+108,p.z);targets[north?'metroTrainNorth':'metroTrainSouth']=[p.x,heightAt(p.x,p.z)+49,p.z];
-    lastMetro={active:metroGroup.visible,north,year:s.calendarYear,stations:stations.filter(st=>st.group.visible).map(st=>st.name),train:[p.x,p.z],routeSource:URBAN.metro.source};
+    const pose=targets.metroPoseAt(north?'metroNorth':'metroSouth',s.eventProgress,s.eventDuration||s.event?.duration_seconds||10),d=pose.from+pose.direction*pose.head;
+    for(let i=0;i<cars.length;i++){
+      const carD=d-i*METRO_SHOT.carSpacing*pose.direction;
+      cars[i].visible=end>=carD+10;
+      const p=sample(path,carD),front=sample(path,carD+9*pose.direction),rear=sample(path,carD-9*pose.direction);
+      cars[i].position.set(p.x,heightAt(p.x,p.z)+46,p.z);
+      cars[i].rotation.y=Math.atan2(front.x-rear.x,front.z-rear.z);
+    }
+    title.position.set(pose.x,pose.y+59,pose.z);targets[north?'metroTrainNorth':'metroTrainSouth']=[pose.x,pose.y,pose.z];
+    lastMetro={active:metroGroup.visible,north,year:s.calendarYear,stations:stations.filter(st=>st.group.visible).map(st=>st.name),train:[pose.x,pose.z],distance:pose.distance,speed:pose.speed,departureProgress:METRO_SHOT.departure,routeSource:URBAN.metro.source};
   }
   function setView(position){for(const t of labels){const distance=position.distanceTo?position.distanceTo(t.position):Math.hypot(position.x-t.position.x,position.y-t.position.y,position.z-t.position.z),width=clamp(distance*(t===title ? .42 : .24),t===title?65:45,t===title?900:550);t.scale.set(width,width/8,1);}}
   function diagnostics(){return{bridge:bridgeParts.map(p=>({name:p.name,offset:p.offset,width:p.width,length:p.length,deckY:p.deckY,visible:p.g.visible,range:p.range})),metro:lastMetro,bounds,stages:stages.map(i=>({start:i.start,end:i.end,death:i.death,key:i.key,range:i.range,visible:i.g.visible,ceiling:i.plane.constant})),constructionVisible:construction.filter(i=>i.g.visible).length,targets:Object.keys(targets)};}

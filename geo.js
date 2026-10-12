@@ -1,11 +1,15 @@
 import { GEOGRAPHY } from './assets/geography/city-data.js';
+import { COMPLEX_BUILDINGS } from './assets/geography/complex-buildings.js';
 
 // Local tangent plane, metres. Origin is OSM dam way171261814 midpoint.
 export const ORIGIN = {lon:60.6033600,lat:56.8386511};
 const K=111320, C=Math.cos(ORIGIN.lat*Math.PI/180);
 export function project(lon,lat){return [(lon-ORIGIN.lon)*K*C,(ORIGIN.lat-lat)*K];}
 export function unproject(x,z){return [ORIGIN.lon+x/(K*C),ORIGIN.lat-z/K];}
-export const GEO=GEOGRAPHY;
+// OSM ways and relations have separate ID namespaces. Negative render IDs retain
+// compatibility with the existing numeric way-ID filters; source type/id remain explicit.
+const replacedWays=new Set(COMPLEX_BUILDINGS.suppressedWayIds);
+export const GEO={...GEOGRAPHY,buildings:[...GEOGRAPHY.buildings.filter(b=>!replacedWays.has(b.id)),...COMPLEX_BUILDINGS.records]};
 const specs = {
  dam:[60.60336,56.8386511,0.225,160,38,9,1723.32,1723.98],
  mint:[60.60285,56.83740,1.39,50,38,15,1725,1726],
