@@ -1,0 +1,56 @@
+{
+  "file": "sevastyanov-house.glb",
+  "sha256": "c396c9beb45db3dfca5864a3aef2e2a97bf3e1c15571285eba7d4937591510e8",
+  "bytes": 13654404,
+  "triangles": 522656,
+  "drawCalls": 17,
+  "sourceSceneSha256": "db9cacfc107bfd507f271fa35e268819356429afde799815422ffcef42237aa7",
+  "semanticNodes": {
+    "exterior": "SevastyanovExterior",
+    "modernHall": "SevastyanovModernHall",
+    "root": "SevastyanovRoot"
+  },
+  "modernSince": 2009,
+  "axisMapping": "Blender (x,y,z) to glTF (x,z,-y)",
+  "bounds": {
+    "min": [
+      -6.80000114440918,
+      -7.376073973830444e-9,
+      -28.529998779296875
+    ],
+    "max": [
+      34.7400016784668,
+      15.710000038146973,
+      6.799999713897705
+    ],
+    "dimensions": [
+      41.54000282287598,
+      15.710000045523046,
+      35.32999849319458
+    ]
+  },
+  "sourceHorizontalMapTransform": {
+    "anchor": {
+      "longitude": 60.60581,
+      "latitude": 56.83897
+    },
+    "metresPerDegree": 111320,
+    "longitudeCorrection": "cos(latitude56.83897deg)",
+    "angleDegrees": 11,
+    "scaleXY": 0.88,
+    "offsetBeforeScale": {
+      "x": -3,
+      "y": 2.6
+    },
+    "forward": "Bx=(E*cos(a)+N*sin(a)-3)*0.88; By=(-E*sin(a)+N*cos(a)+2.6)*0.88",
+    "inverse": "u=Bx/0.88+3; v=By/0.88-2.6; E=u*cos(a)-v*sin(a); N=u*sin(a)+v*cos(a)",
+    "verticalNote": "The source map transform acts on XY only; multiplying glTFY by1/0.88 is a deliberate uniform model scaling choice, not an inferred height measurement."
+  },
+  "runtimeCalibration": {
+    "uniformScale": 1.1363636363636365,
+    "worldHeadingDegrees": 11,
+    "verticalScaleIsVisualEstimate": true
+  },
+  "materials": "Opaque Principled metallic-roughness colors; procedural normal variation omitted; glazing is opaque reflective material.",
+  "limitations": "Approximate reference-based architectural reconstruction; exterior hidden details are not an authenticated historical phase."
+}

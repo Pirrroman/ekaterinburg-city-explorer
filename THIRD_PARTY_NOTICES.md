@@ -27,3 +27,9 @@ The interface uses system fonts; no font files are bundled. Landmark geometry is
 Главпочтамт geometry was informed by dated PastVu photo records. Reference URLs, date ranges and photo attribution are listed in [the reference manifest](assets/references/revision7-postoffice/manifest.json). External photographs are not bundled or used as textures. Model dimensions remain a reconstruction.
 
 The 2026-10-12 central-building refresh, including Макаровский and Forum City, is documented in [COMPLEX-BUILDINGS-SOURCES.md](assets/geography/COMPLEX-BUILDINGS-SOURCES.md); it supplements the 2026-10-08 base dataset and is not a full agglomeration update.
+
+## Sevastyanov GLB integration
+
+- `vendor/GLTFLoader.js`: Three.js r180, MIT, [upstream source](https://github.com/mrdoob/three.js/blob/r180/examples/jsm/loaders/GLTFLoader.js). Two import paths were adjusted to the existing local vendor files. License: `vendor/THREE-LICENSE.txt`.
+- `assets/models/sevastyanov-house.glb`: model authored for this project from the supplied Blender scene; approximate contemporary geometry, no source photograph pixels or third-party textures embedded.
+- Visual references: [Ekaterinburg — Lenina 35 — 2026-06](https://commons.wikimedia.org/wiki/File:Ekaterinburg_-_Lenina_35_-_2026-06.jpg), Александр Сигачёв, [CC0](https://creativecommons.org/publicdomain/zero/1.0/); [Sevastyanov s Mansion — 2023-02-11 — 1](https://commons.wikimedia.org/wiki/File:Sevastyanov_s_Mansion_(2023-02-11)_-_1.jpg), Vyacheslav Bukharov, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Photographs are not redistributed in the GLB.
