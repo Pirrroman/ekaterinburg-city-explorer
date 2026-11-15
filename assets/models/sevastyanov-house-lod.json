@@ -1,0 +1,33 @@
+{
+  "format": "glTF 2 binary",
+  "file": "sevastyanov-house-lod.glb",
+  "sha256": "1daebe4df2079a1ca7691cd8e7d42527d65c2478520319362a66a13ccab1138a",
+  "bytes": 1927148,
+  "triangles": 66344,
+  "meshes": 16,
+  "materials": 16,
+  "source": "Simplified from the same authored Blender house as sevastyanov-house.glb; geographic origin and major architecture retained.",
+  "geometry": {
+    "preserved": [
+      "rotunda",
+      "main roofs",
+      "wings",
+      "modern central hall",
+      "facade color fields"
+    ],
+    "removedOrReduced": [
+      "small rosettes",
+      "cornice dentils",
+      "fine ironwork",
+      "roof seams",
+      "micro-bevels",
+      "curve tessellation"
+    ],
+    "curveToleranceMeters": 0.025,
+    "boundsNote": "Same X/Z extrema and roof height as the detailed asset; base differs by 0.001404 m."
+  },
+  "timeline": {
+    "modernFrom": 2009
+  },
+  "references": "README.md"
+}
